@@ -18,7 +18,7 @@ if __name__ == "__main__" :
     parser.add_argument("--crop_size", type=int, help="Size of the crop used during the training.", default=48)
     parser.add_argument("--max_noise_variance" , type = int, help = "Maximum variance noise used during the training.",
                         default = 50)
-    parser.add_argument("--epoch_checkpoint", type=int, help="Number of epochs between two consecutive model export.",
+    parser.add_argument("--epoch_checkpoint", type=int, help="Number of epochs between two consecutive model exports.",
                         default=1)
     args = parser.parse_args()
 
