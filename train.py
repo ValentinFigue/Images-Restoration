@@ -1,7 +1,9 @@
-from Dataset import compute_image_paths, open_image,Dataset
-
+from Dataset import Dataset
+from Network import RestorationNetwork, train_model
 
 path = "/Users/valentinfigue/Desktop/Projets/TrainingVDSR"
 
-data = Dataset(path, True)
+dataset = Dataset(path, True)
+network = RestorationNetwork()
+train_model(network,dataset)
 
