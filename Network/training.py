@@ -1,8 +1,9 @@
 import time
 import torch
+import os
 
 
-def train_model(model, dataset, num_epochs=25, batch_size = 8, num_workers = 1, learning_rate = 0.0001, weight_decay = 0):
+def train_model(model, dataset, output_path, num_epochs=25, batch_size = 8, num_workers = 1, learning_rate = 0.0001, weight_decay = 0, epoch_checkpoint = 1):
 
     since = time.time()
 
@@ -11,8 +12,11 @@ def train_model(model, dataset, num_epochs=25, batch_size = 8, num_workers = 1, 
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,weight_decay=weight_decay)
     model.train()
 
+    if not(os.path.exists(output_path)) :
+        os.makedirs(output_path)
+
     for epoch in range(num_epochs):
-        print('Epoch {}/{}'.format(epoch, num_epochs - 1))
+        print('Epoch {}/{}'.format(epoch+1, num_epochs))
         print('-' * 10)
 
         running_loss = 0.0
@@ -36,6 +40,8 @@ def train_model(model, dataset, num_epochs=25, batch_size = 8, num_workers = 1, 
         epoch_loss = running_loss / len(data_loader.dataset)
 
         print('Loss: {:.4f} \n'.format(epoch_loss))
+        if ((epoch+1)%epoch_checkpoint) == 0 :
+            torch.save(model.state_dict(),os.path.join(output_path,"checkpoint{}.tar".format(epoch+1)))
 
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
