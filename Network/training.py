@@ -22,7 +22,7 @@ def train_model(model, dataset, output_path, num_epochs=25, batch_size = 8, num_
         running_loss = 0.0
 
         # Iterate over data.
-        for images, degraded_images  in data_loader:
+        for images, degraded_images in data_loader:
 
             # zero the parameter gradients
             optimizer.zero_grad()
