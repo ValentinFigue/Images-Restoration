@@ -41,8 +41,10 @@ class Dataset(torch.utils.data.Dataset) :
             image = crop_image(image, self.crop_size)
         # Conversion to PyTorch format
         degraded_image = add_noise(image,self.noise_variance)
-        image = np.transpose(image,(2,0,1))/255
-        degraded_image = np.transpose(degraded_image,(2,0,1))/255
+        degraded_image = ((degraded_image/255)-self.mean)/self.variance
+        image = ((image/255)-self.mean)/self.variance
+        image = np.transpose(image,(2,0,1))
+        degraded_image = np.transpose(degraded_image,(2,0,1))
         image = torch.FloatTensor(image)
         degraded_image = torch.FloatTensor(degraded_image)
 
