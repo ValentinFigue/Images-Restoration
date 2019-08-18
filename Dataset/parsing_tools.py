@@ -1,5 +1,6 @@
 import os
 from PIL import Image
+import skimage.io as io
 import numpy as np
 
 
@@ -45,19 +46,13 @@ def open_image(path):
     return image
 
 
-def export_image(path):
+def export_image(path, image):
     """
     Writing function
 
     Args:
         path: Path containing the image
 
-    Returns:
-        The image as numpy array
-
     """
 
-    image = Image.open(path)
-    image = np.array(image)
-
-    return image
+    io.imsave(path, image)

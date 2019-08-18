@@ -1,6 +1,6 @@
 import argparse
 from Network import RestorationNetwork, inference
-from Dataset import open_image
+from Dataset import open_image, export_image
 
 
 if __name__ == "__main__" :
@@ -14,7 +14,8 @@ if __name__ == "__main__" :
 
     network = RestorationNetwork()
     image = open_image(args.path)
-    output_image = inference(network,image, args.output_path, args.checkpoint_path)
+    output_image = inference(network,image, args.checkpoint_path)
+    export_image(args.output_path, output_image)
 
 
 

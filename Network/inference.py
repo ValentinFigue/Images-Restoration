@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-def inference(network, image, output_path, checkpoint_path):
+def inference(network, image, checkpoint_path):
 
     network.load_state_dict(torch.load(checkpoint_path))
 
