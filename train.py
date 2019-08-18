@@ -26,4 +26,5 @@ if __name__ == "__main__" :
     if len(dataset)==0 :
         raise Exception("The folder provided does not contain any images.")
     network = RestorationNetwork()
+    im, deg = dataset[0]
     train_model(network,dataset,args.output_path,args.num_epochs,args.batch_size,args.num_workers,args.learning_rate,args.weight_decay, args.epoch_checkpoint)
