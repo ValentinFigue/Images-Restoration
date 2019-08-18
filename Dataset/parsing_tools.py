@@ -43,3 +43,21 @@ def open_image(path):
     image = np.array(image)
 
     return image
+
+
+def export_image(path):
+    """
+    Writing function
+
+    Args:
+        path: Path containing the image
+
+    Returns:
+        The image as numpy array
+
+    """
+
+    image = Image.open(path)
+    image = np.array(image)
+
+    return image
