@@ -22,7 +22,7 @@ if __name__ == "__main__" :
                         default=1)
     args = parser.parse_args()
 
-    dataset = Dataset(args.path, True,args.max_noise_variance)
+    dataset = Dataset(args.path, True,args.crop_size,args.max_noise_variance)
     if len(dataset)==0 :
         raise Exception("The folder provided does not contain any images.")
     network = RestorationNetwork()
