@@ -21,8 +21,8 @@ class Dataset(torch.utils.data.Dataset) :
         self.training_mode = training_mode
         self.crop_size = crop_size
         self.noise_variance = noise_variance
-        self.mean = [0.5,0.5,0.5]
-        self.variance = [0.25,0.25,0.25]
+        self.mean = [0.43110137, 0.43996549, 0.36798606]
+        self.variance = [0.2103285 , 0.1981421 , 0.18789765]
 
     def __getitem__(self, item):
         """
@@ -36,13 +36,14 @@ class Dataset(torch.utils.data.Dataset) :
 
         # Input reading
         image = open_image(self.path_list[item])
+        image = image/255
         # Data Augmentation
         if self.training_mode :
             image = crop_image(image, self.crop_size)
         # Conversion to PyTorch format
-        degraded_image = add_noise(image,self.noise_variance)
-        degraded_image = ((degraded_image/255)-self.mean)/self.variance
-        image = ((image/255)-self.mean)/self.variance
+        degraded_image = add_noise(image,self.noise_variance/255)
+        degraded_image = (degraded_image-self.mean)/self.variance
+        image = (image-self.mean)/self.variance
         image = np.transpose(image,(2,0,1))
         degraded_image = np.transpose(degraded_image,(2,0,1))
         image = torch.FloatTensor(image)

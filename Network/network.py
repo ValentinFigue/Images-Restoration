@@ -10,15 +10,19 @@ class RestorationNetwork(nn.Module):
         """
 
         super(RestorationNetwork,self).__init__()
-        first_layer = nn.Sequential(nn.Conv2d(in_channels,64,3,1,1),nn.ReLU())
+        first_layer = nn.Sequential(nn.Conv2d(in_channels,64,3,1,1, bias=False),nn.ReLU())
         intermediate_blocs = []
         for num in range(18):
-            intermediate_blocs.append(nn.Conv2d(64,64,3,1,1))
+            intermediate_blocs.append(nn.Conv2d(64,64,3,1,1, bias=False))
             intermediate_blocs.append(nn.ReLU())
         intermediate_layers = nn.Sequential(*intermediate_blocs)
-        last_layer = nn.Sequential(nn.Conv2d(64,in_channels,3,1,1))
+        last_layer = nn.Sequential(nn.Conv2d(64,in_channels,3,1,1, bias=False))
 
         self.layers = nn.Sequential(first_layer, intermediate_layers, last_layer)
+
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.xavier_uniform_(m.weight)
 
     def forward(self,x):
         """

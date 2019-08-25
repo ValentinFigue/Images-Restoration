@@ -5,8 +5,8 @@ def inference(network, image, checkpoint_path):
 
     network.load_state_dict(torch.load(checkpoint_path))
 
-    mean = [0.5, 0.5, 0.5]
-    variance = [0.25, 0.25, 0.25]
+    mean = [0.43110137, 0.43996549, 0.36798606]
+    variance = [0.2103285 , 0.1981421 , 0.18789765]
     image = ((image / 255) - mean) / variance
     image = np.transpose(image, (2, 0, 1))
     image = torch.FloatTensor(image)
