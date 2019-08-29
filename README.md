@@ -79,3 +79,41 @@ python train.py -h
 ```
 
 ## Inference Procedure
+
+Whether you have trained or not the network, you can use pretrained weights or your own weight to denoise a custom image. 
+You need to specify two arguments to use the inference script :
+ 
+- *path* : Path to image which need to be denoised.
+- *output_path* : Path where the resulting image will be stored.
+
+**Example with pretrained weights** 
+
+In the case, you want to use pretrained weights, you just have to type the following command :
+
+```console
+python infer.py "path/to/image" "path/to/result"
+```
+
+An example of results obtained with the pretrained network is illustrated below : 
+
+**Noised Image :**
+
+![](Data/example.png)
+
+**Result of the inference:**
+
+![](Data/result.png)
+
+**Example with custom weights** 
+
+To do the inference with your own weights, you just need to specify the weights, with the optional argument checkpoint_path as below :
+
+```console
+python infer.py "path/to/image" "path/to/result"  --checkpoint_path "path/to/weights"
+```
+
+Note that you directly find the documentation of the different options by typing : 
+
+```console
+python infer.py -h
+```
