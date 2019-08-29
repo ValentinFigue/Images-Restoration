@@ -22,10 +22,13 @@ if __name__ == "__main__" :
                         default=1)
     args = parser.parse_args()
 
+    # Definition of the dataset
     dataset = Dataset(args.path, True,args.crop_size,args.max_noise_variance)
     if len(dataset)==0 :
         raise Exception("The folder provided does not contain any images.")
+    # Creation of the network
     network = RestorationNetwork()
+    # Training of the network
     train_model(network,dataset,args.output_path,args.num_epochs,args.batch_size,args.num_workers,args.learning_rate,args.weight_decay, args.epoch_checkpoint)
 
 
