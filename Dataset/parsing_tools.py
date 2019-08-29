@@ -19,25 +19,23 @@ def compute_image_paths(directory_path):
     path_list = []
     # Loop over all the elements
     for root, dirs, files in os.walk(directory_path):
-        for file in files :
+        for file in files:
             # Check that the file has a jpg or png extension
             extension = file[-4:]
-            if extension in ['.png','.jpg'] :
-                path_list.append(os.path.join(root,file))
+            if extension in ['.png', '.jpg']:
+                path_list.append(os.path.join(root, file))
 
     return path_list
 
 
 def open_image(path):
     """
-    Reading function
-
+    Reading function of images
     Args:
-        path: Path containing the image
+        path: Path of the image
 
     Returns:
         The image as numpy array
-
     """
 
     image = Image.open(path)
@@ -48,10 +46,10 @@ def open_image(path):
 
 def export_image(path, image):
     """
-    Writing function
-
+    Reading function of images
     Args:
-        path: Path containing the image
+        path: Path where to write the image
+        image: Numpy array of the image to be written
 
     """
 
