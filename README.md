@@ -116,4 +116,4 @@ Note that you directly find the documentation of the different options by typing
 
 ```console
 python infer.py -h
-```
+```# TinyYOLOv3-Pytorch
